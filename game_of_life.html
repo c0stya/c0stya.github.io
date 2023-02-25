@@ -1,93 +1,90 @@
-<h1 id="c0styas-notes">c0stya&#39;s notes</h1>
-<h2 id="a-proper-way-to-write-the-game-of-life-or-why-i-dont-like-object-oriented-programming">A proper way to write the Game of Life or why I don&#39;t like object-oriented programming</h2>
+<h1>c0stya's notes</h1>
+<h2>A proper way to write the Game of Life or why I don't like object-oriented programming</h2>
 <p>I started my career writing Smalltalk programs. It is a language with the purest object-oriented style. Everything is an object and objects communitcate by sending messages. I strongly believed it was a proper way to represent the reality. Later I have changed my mind dramatically. Now I think the proper way of writing code is to keep it minimalistic and practical.</p>
-<p>To demonstrate the idea I have written two versions of the Conway&#39;s Game of Life in Python. The first one follows the object-oriented style.</p>
-<pre><code class="language-python">import random
+<p>To demonstrate the idea I have written two versions of the Conway's Game of Life in Python. The first one follows the object-oriented style.</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-s1">random</span>
 
 
-class Cell(object):
-    def __init__(self, x, y, val, field):
-        self.x, self.y = x, y
-        self.val = val
-        self.field = field
+<span class="pl-k">class</span> <span class="pl-v">Cell</span>(<span class="pl-s1">object</span>):
+    <span class="pl-k">def</span> <span class="pl-en">__init__</span>(<span class="pl-s1">self</span>, <span class="pl-s1">x</span>, <span class="pl-s1">y</span>, <span class="pl-s1">val</span>, <span class="pl-s1">field</span>):
+        <span class="pl-s1">self</span>.<span class="pl-s1">x</span>, <span class="pl-s1">self</span>.<span class="pl-s1">y</span> <span class="pl-c1">=</span> <span class="pl-s1">x</span>, <span class="pl-s1">y</span>
+        <span class="pl-s1">self</span>.<span class="pl-s1">val</span> <span class="pl-c1">=</span> <span class="pl-s1">val</span>
+        <span class="pl-s1">self</span>.<span class="pl-s1">field</span> <span class="pl-c1">=</span> <span class="pl-s1">field</span>
 
-    def get_new_value(self):
-        neighbors = field.get_neighbors(self.x, self.y)
+    <span class="pl-k">def</span> <span class="pl-en">get_new_value</span>(<span class="pl-s1">self</span>):
+        <span class="pl-s1">neighbors</span> <span class="pl-c1">=</span> <span class="pl-s1">field</span>.<span class="pl-en">get_neighbors</span>(<span class="pl-s1">self</span>.<span class="pl-s1">x</span>, <span class="pl-s1">self</span>.<span class="pl-s1">y</span>)
 
-        neighbors_alive = 0
-        for cell in neighbors:
-            neighbors_alive += cell.val
+        <span class="pl-s1">neighbors_alive</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span>
+        <span class="pl-k">for</span> <span class="pl-s1">cell</span> <span class="pl-c1">in</span> <span class="pl-s1">neighbors</span>:
+            <span class="pl-s1">neighbors_alive</span> <span class="pl-c1">+=</span> <span class="pl-s1">cell</span>.<span class="pl-s1">val</span>
 
-        if neighbors_alive == 2:
-            val = self.val
-        elif neighbors_alive == 3:
-            val = 1
-        else:
-            val = 0
+        <span class="pl-k">if</span> <span class="pl-s1">neighbors_alive</span> <span class="pl-c1">==</span> <span class="pl-c1">2</span>:
+            <span class="pl-s1">val</span> <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-s1">val</span>
+        <span class="pl-k">elif</span> <span class="pl-s1">neighbors_alive</span> <span class="pl-c1">==</span> <span class="pl-c1">3</span>:
+            <span class="pl-s1">val</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span>
+        <span class="pl-k">else</span>:
+            <span class="pl-s1">val</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span>
 
-        return val
+        <span class="pl-k">return</span> <span class="pl-s1">val</span>
 
 
-class Field(object):
-    def __init__(self, h, w):
-        self.h, self.w = h, w
-        self.cells = [[None] * w for i in range(h)]
+<span class="pl-k">class</span> <span class="pl-v">Field</span>(<span class="pl-s1">object</span>):
+    <span class="pl-k">def</span> <span class="pl-en">__init__</span>(<span class="pl-s1">self</span>, <span class="pl-s1">h</span>, <span class="pl-s1">w</span>):
+        <span class="pl-s1">self</span>.<span class="pl-s1">h</span>, <span class="pl-s1">self</span>.<span class="pl-s1">w</span> <span class="pl-c1">=</span> <span class="pl-s1">h</span>, <span class="pl-s1">w</span>
+        <span class="pl-s1">self</span>.<span class="pl-s1">cells</span> <span class="pl-c1">=</span> [[<span class="pl-c1">None</span>] <span class="pl-c1">*</span> <span class="pl-s1">w</span> <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">h</span>)]
 
-        for i in range(h):
-            for j in range(w):
-                val = random.randint(0, 1)
-                self.cells[i][j] = Cell(i, j, val, self)
+        <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">h</span>):
+            <span class="pl-k">for</span> <span class="pl-s1">j</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">w</span>):
+                <span class="pl-s1">val</span> <span class="pl-c1">=</span> <span class="pl-s1">random</span>.<span class="pl-en">randint</span>(<span class="pl-c1">0</span>, <span class="pl-c1">1</span>)
+                <span class="pl-s1">self</span>.<span class="pl-s1">cells</span>[<span class="pl-s1">i</span>][<span class="pl-s1">j</span>] <span class="pl-c1">=</span> <span class="pl-v">Cell</span>(<span class="pl-s1">i</span>, <span class="pl-s1">j</span>, <span class="pl-s1">val</span>, <span class="pl-s1">self</span>)
 
-    def step(self):
-        new_cells = [[None] * self.w for i in range(self.h)]
+    <span class="pl-k">def</span> <span class="pl-en">step</span>(<span class="pl-s1">self</span>):
+        <span class="pl-s1">new_cells</span> <span class="pl-c1">=</span> [[<span class="pl-c1">None</span>] <span class="pl-c1">*</span> <span class="pl-s1">self</span>.<span class="pl-s1">w</span> <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">self</span>.<span class="pl-s1">h</span>)]
 
-        for i in range(self.h):
-            for j in range(self.w):
-                val = self.cells[i][j].get_new_value()
-                new_cells[i][j] = Cell(i, j, val, self)
+        <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">self</span>.<span class="pl-s1">h</span>):
+            <span class="pl-k">for</span> <span class="pl-s1">j</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">self</span>.<span class="pl-s1">w</span>):
+                <span class="pl-s1">val</span> <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-s1">cells</span>[<span class="pl-s1">i</span>][<span class="pl-s1">j</span>].<span class="pl-en">get_new_value</span>()
+                <span class="pl-s1">new_cells</span>[<span class="pl-s1">i</span>][<span class="pl-s1">j</span>] <span class="pl-c1">=</span> <span class="pl-v">Cell</span>(<span class="pl-s1">i</span>, <span class="pl-s1">j</span>, <span class="pl-s1">val</span>, <span class="pl-s1">self</span>)
 
-        self.cells = new_cells
+        <span class="pl-s1">self</span>.<span class="pl-s1">cells</span> <span class="pl-c1">=</span> <span class="pl-s1">new_cells</span>
 
-    def get_neighbors(self, x, y):
-        neighbors = []
-        for i in range(-1, 2):
-            for j in range(-1, 2):
-                # sentinel
-                if (
-                    x + i &lt; 0
-                    or y + j &lt; 0
-                    or x + i == self.h
-                    or y + j == self.w
-                    or (i == 0 and j == 0)
+    <span class="pl-k">def</span> <span class="pl-en">get_neighbors</span>(<span class="pl-s1">self</span>, <span class="pl-s1">x</span>, <span class="pl-s1">y</span>):
+        <span class="pl-s1">neighbors</span> <span class="pl-c1">=</span> []
+        <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-c1">-</span><span class="pl-c1">1</span>, <span class="pl-c1">2</span>):
+            <span class="pl-k">for</span> <span class="pl-s1">j</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-c1">-</span><span class="pl-c1">1</span>, <span class="pl-c1">2</span>):
+                <span class="pl-c"># sentinel</span>
+                <span class="pl-k">if</span> (
+                    <span class="pl-s1">x</span> <span class="pl-c1">+</span> <span class="pl-s1">i</span> <span class="pl-c1">&lt;</span> <span class="pl-c1">0</span>
+                    <span class="pl-c1">or</span> <span class="pl-s1">y</span> <span class="pl-c1">+</span> <span class="pl-s1">j</span> <span class="pl-c1">&lt;</span> <span class="pl-c1">0</span>
+                    <span class="pl-c1">or</span> <span class="pl-s1">x</span> <span class="pl-c1">+</span> <span class="pl-s1">i</span> <span class="pl-c1">==</span> <span class="pl-s1">self</span>.<span class="pl-s1">h</span>
+                    <span class="pl-c1">or</span> <span class="pl-s1">y</span> <span class="pl-c1">+</span> <span class="pl-s1">j</span> <span class="pl-c1">==</span> <span class="pl-s1">self</span>.<span class="pl-s1">w</span>
+                    <span class="pl-c1">or</span> (<span class="pl-s1">i</span> <span class="pl-c1">==</span> <span class="pl-c1">0</span> <span class="pl-c1">and</span> <span class="pl-s1">j</span> <span class="pl-c1">==</span> <span class="pl-c1">0</span>)
                 ):
-                    continue
-                neighbors.append(self.cells[x + i][y + j])
+                    <span class="pl-k">continue</span>
+                <span class="pl-s1">neighbors</span>.<span class="pl-en">append</span>(<span class="pl-s1">self</span>.<span class="pl-s1">cells</span>[<span class="pl-s1">x</span> <span class="pl-c1">+</span> <span class="pl-s1">i</span>][<span class="pl-s1">y</span> <span class="pl-c1">+</span> <span class="pl-s1">j</span>])
 
-        return neighbors
+        <span class="pl-k">return</span> <span class="pl-s1">neighbors</span>
 
 
-field = Field(10, 10)
+<span class="pl-s1">field</span> <span class="pl-c1">=</span> <span class="pl-v">Field</span>(<span class="pl-c1">10</span>, <span class="pl-c1">10</span>)
 
-for t in range(100):
-    field.step()
-</code></pre>
+<span class="pl-k">for</span> <span class="pl-s1">t</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-c1">100</span>):
+    <span class="pl-s1">field</span>.<span class="pl-en">step</span>()</pre></div>
 <p>The code above is somewhat pathalogical but nicely illustrates the idea. I aggressively follow the object-oriented paradigm and represent classes of the Field and the Cell. The first problem here is that the Cell class is too simplistic. By introducing it we inject redundant methods and complexity. The second problem is that these classes have to keep references to each other. It complicates the logic. As the result we have 70 lines of messy code.</p>
-<p>Let&#39;s move to the second version.</p>
-<pre><code class="language-python">import numpy as np
-from scipy.signal import convolve2d
+<p>Let's move to the second version.</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-s1">numpy</span> <span class="pl-k">as</span> <span class="pl-s1">np</span>
+<span class="pl-k">from</span> <span class="pl-s1">scipy</span>.<span class="pl-s1">signal</span> <span class="pl-k">import</span> <span class="pl-s1">convolve2d</span>
 
-field = np.random.randint(0, 2, size=(10, 10))
-kernel = np.ones((3, 3))
+<span class="pl-s1">field</span> <span class="pl-c1">=</span> <span class="pl-s1">np</span>.<span class="pl-s1">random</span>.<span class="pl-en">randint</span>(<span class="pl-c1">0</span>, <span class="pl-c1">2</span>, <span class="pl-s1">size</span><span class="pl-c1">=</span>(<span class="pl-c1">10</span>, <span class="pl-c1">10</span>))
+<span class="pl-s1">kernel</span> <span class="pl-c1">=</span> <span class="pl-s1">np</span>.<span class="pl-en">ones</span>((<span class="pl-c1">3</span>, <span class="pl-c1">3</span>))
 
-for i in range(100):
-    new_field = convolve2d(field, kernel, mode=&quot;same&quot;)
-    field = (new_field == 3) + (new_field == 4) * field
-</code></pre>
-<p>So, that&#39;s it. 9 lines of code to do the same job. There are few ideas to explain:</p>
+<span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-c1">100</span>):
+    <span class="pl-s1">new_field</span> <span class="pl-c1">=</span> <span class="pl-en">convolve2d</span>(<span class="pl-s1">field</span>, <span class="pl-s1">kernel</span>, <span class="pl-s1">mode</span><span class="pl-c1">=</span><span class="pl-s">"same"</span>)
+    <span class="pl-s1">field</span> <span class="pl-c1">=</span> (<span class="pl-s1">new_field</span> <span class="pl-c1">==</span> <span class="pl-c1">3</span>) <span class="pl-c1">+</span> (<span class="pl-s1">new_field</span> <span class="pl-c1">==</span> <span class="pl-c1">4</span>) <span class="pl-c1">*</span> <span class="pl-s1">field</span></pre></div>
+<p>So, that's it. 9 lines of code to do the same job. There are few ideas to explain:</p>
 <ul>
-<li>we don&#39;t really need the cell as a separate class, it is just binary value</li>
+<li>we don't really need the cell as a separate class, it is just binary value</li>
 <li>the field is nicely represented by a binary 2D matrix</li>
 <li>the whole logic for the local summation can be represented as convolution operator</li>
 </ul>
 <p>Moreover, the second version is more efficient. Convolution uses matrix dot product implicitly which is faster then just summation.</p>
-
