@@ -1,0 +1,27 @@
+---
+title: "About"
+---
+
+My name is **Konstantin Selivanov**. I am a machine learning engineer and researcher.
+
+My focus is representation learning and sequence modeling using deep learning methods. I am good at implementing papers and optimizing the ml algorithms. All the startups where I worked as first ml engineer were profitably sold. Some were backed by Google Ventures and Sequoia by more than \$100 millions. I lead ml teams. Sometimes I do consulting. Feel free to reach out to me.
+
+Linkedin: <https://www.linkedin.com/in/selivanov/>
+
+Github: <https://github.com/c0stya>
+
+## Interests
+
+* representation learning, embeddings, contrastive learning and information retrieval
+* natural language processing, large language models (aka LLMs)
+* generative models: autoencoders, flows and diffusion models
+* sequential models: RNNs, transformers, mamba, rwkv
+
+Other topics in machine learning and computer science:
+
+* reinforcement learning and game theory
+* formal languages and compilers, automata theory
+* logic and formal proofs, Coq, Metamath
+* low-level C/CUDA programming
+
+I like minimalism and efficiency. Can do low level code optimization. Linux user for 20 years. I love math and philosophy.

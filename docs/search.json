@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "c0stya’s notes",
+    "section": "",
+    "text": "Brzozowski derivatives (python): https://github.com/c0stya/brzozowski\nTransducer library (c99):"
+  },
+  {
+    "objectID": "index.html#projects",
+    "href": "index.html#projects",
+    "title": "c0stya’s notes",
+    "section": "",
+    "text": "Brzozowski derivatives (python): https://github.com/c0stya/brzozowski\nTransducer library (c99):"
+  },
+  {
+    "objectID": "index.html#articles",
+    "href": "index.html#articles",
+    "title": "c0stya’s notes",
+    "section": "Articles",
+    "text": "Articles\n\nWhy your features should be informative. Mathematical justification."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "My name is Konstantin Selivanov. I am a machine learning engineer and researcher.\nMy focus is representation learning and sequence modeling using deep learning methods. I am good at implementing papers and optimizing the ml algorithms. All the startups where I worked as first ml engineer were profitably sold. Some were backed by Google Ventures and Sequoia by more than $100 millions. I lead ml teams. Sometimes I do consulting. Feel free to reach out to me.\nLinkedin: https://www.linkedin.com/in/selivanov/\nGithub: https://github.com/c0stya"
+  },
+  {
+    "objectID": "about.html#interests",
+    "href": "about.html#interests",
+    "title": "About",
+    "section": "Interests",
+    "text": "Interests\n\nrepresentation learning, embeddings, contrastive learning and information retrieval\nnatural language processing, large language models (aka LLMs)\ngenerative models: autoencoders, flows and diffusion models\nsequential models: RNNs, transformers, mamba, rwkv\n\nOther topics in machine learning and computer science:\n\nreinforcement learning and game theory\nformal languages and compilers, automata theory\nlogic and formal proofs, Coq, Metamath\nlow-level C/CUDA programming\n\nI like minimalism and efficiency. Can do low level code optimization. Linux user for 20 years. I love math and philosophy."
+  }
+]
