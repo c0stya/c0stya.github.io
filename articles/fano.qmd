@@ -12,7 +12,7 @@ $$
 H_b(\epsilon) = -\epsilon \cdot \log(\epsilon)-(1-\epsilon) \cdot \log(1-\epsilon)
 $$
 
-is the **binary entropy**, $C$ is a random variable representing the *classifier* and $|C|$ is a number of classes.
+is the **binary entropy**, $C$ is a random variable representing the **classifier** and $|C|$ is a number of classes.
 
 Let's break this down. Let $X$ be an $n$-ary random variable we want to predict. Let $Y$ be a random variable representing the features we feed into our classifier. We build a classifier $C$ to be as close as we can to match the hidden label $X$. Suppose we aim for a small error rate, not exceeding $\epsilon$. Formally, $P(X=C)=1-\epsilon$.
 
@@ -32,7 +32,7 @@ $$
 I(X,Y) \ge H(X) - H_b(\epsilon) - \epsilon \cdot \log(|C|-1)
 $$
 
-In plain English it means that in order to have good classification quality $1-\epsilon$. we need our features to share at least $H(X) - H(\epsilon) - \epsilon \cdot \log(|C|-1)$ bits with the original data $X$.
+In plain English it means that in order to have good classification quality $1-\epsilon$. we need our features to share at least $H(X) - H_b(\epsilon) - \epsilon \cdot \log(|C|-1)$ bits with the original data $X$.
 
 ## Example
 

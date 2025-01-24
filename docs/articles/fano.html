@@ -165,7 +165,7 @@ H(X|Y) \le H_{b}(\epsilon) + \epsilon \cdot \log(|C|-1) \text{   (*)}
 <p><span class="math display">\[
 H_b(\epsilon) = -\epsilon \cdot \log(\epsilon)-(1-\epsilon) \cdot \log(1-\epsilon)
 \]</span></p>
-<p>is the <strong>binary entropy</strong>, <span class="math inline">\(C\)</span> is a random variable representing the <em>classifier</em> and <span class="math inline">\(|C|\)</span> is a number of classes.</p>
+<p>is the <strong>binary entropy</strong>, <span class="math inline">\(C\)</span> is a random variable representing the <strong>classifier</strong> and <span class="math inline">\(|C|\)</span> is a number of classes.</p>
 <p>Let’s break this down. Let <span class="math inline">\(X\)</span> be an <span class="math inline">\(n\)</span>-ary random variable we want to predict. Let <span class="math inline">\(Y\)</span> be a random variable representing the features we feed into our classifier. We build a classifier <span class="math inline">\(C\)</span> to be as close as we can to match the hidden label <span class="math inline">\(X\)</span>. Suppose we aim for a small error rate, not exceeding <span class="math inline">\(\epsilon\)</span>. Formally, <span class="math inline">\(P(X=C)=1-\epsilon\)</span>.</p>
 <p>Let’s rewrite the original inequality (*) to be suitable for our needs. By definition of the conditional entropy:</p>
 <p><span class="math display">\[
@@ -177,7 +177,7 @@ H(X) - I(X,Y) \le H_b(\epsilon) + \epsilon \cdot \log(|C|-1)
 \]</span> then, <span class="math display">\[
 I(X,Y) \ge H(X) - H_b(\epsilon) - \epsilon \cdot \log(|C|-1)
 \]</span></p>
-<p>In plain English it means that in order to have good classification quality <span class="math inline">\(1-\epsilon\)</span>. we need our features to share at least <span class="math inline">\(H(X) - H(\epsilon) - \epsilon \cdot \log(|C|-1)\)</span> bits with the original data <span class="math inline">\(X\)</span>.</p>
+<p>In plain English it means that in order to have good classification quality <span class="math inline">\(1-\epsilon\)</span>. we need our features to share at least <span class="math inline">\(H(X) - H_b(\epsilon) - \epsilon \cdot \log(|C|-1)\)</span> bits with the original data <span class="math inline">\(X\)</span>.</p>
 <section id="example" class="level2">
 <h2 class="anchored" data-anchor-id="example">Example</h2>
 <p>Lets take an example of a classification problem with 10 classes. It can be a MNIST dataset for example. Assume it has <span class="math inline">\(|C|=10\)</span> classes uniformely distributed. That means <span class="math inline">\(H(X) = \log(10)\)</span> of total information. Assume we want to design a classifier with error at least <span class="math inline">\(0.9\)</span>, then</p>
