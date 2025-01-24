@@ -2,26 +2,27 @@
 title: "About"
 ---
 
+![](avatar.jpg){width="30%"}
+
 My name is **Konstantin Selivanov**. I am a machine learning engineer and researcher.
 
-My focus is representation learning and sequence modeling using deep learning methods. I am good at implementing papers and optimizing the ml algorithms. All the startups where I worked as first ml engineer were profitably sold. Some were backed by Google Ventures and Sequoia by more than \$100 millions. I lead ml teams. Sometimes I do consulting. Feel free to reach out to me.
+- **LinkedIn**: [Konstantin Selivanov](https://www.linkedin.com/in/selivanov/)
+- **GitHub**: [c0stya](https://github.com/c0stya)
 
-Linkedin: <https://www.linkedin.com/in/selivanov/>
-
-Github: <https://github.com/c0stya>
+My lifelong focus has been on **representation learning** and **deep learning**. I excel at implementing research papers and optimizing machine learning algorithms. As the first machine learning engineer at several startups, I contributed to their successful exits, with some backed by **Google Ventures** and **Sequoia Capital** for over \$100 million. I have experience leading machine learning teams and occasionally offer consulting services. Feel free to reach out to me.
 
 ## Interests
 
-* representation learning, embeddings, contrastive learning and information retrieval
-* natural language processing, large language models (aka LLMs)
-* generative models: autoencoders, flows and diffusion models
-* sequential models: RNNs, transformers, mamba, rwkv
+- **Representation Learning**: Embeddings, contrastive learning, and information retrieval.
+- **Natural Language Processing**: Large language models (LLMs).
+- **Generative Models**: Autoencoders, normalizing flows, and diffusion models.
+- **Sequential Models**: RNNs, transformers, Mamba, and RWKV.
 
-Other topics in machine learning and computer science:
+### Other Topics in Machine Learning and Computer Science
 
-* reinforcement learning and game theory
-* formal languages and compilers, automata theory
-* logic and formal proofs, Coq, Metamath
-* low-level C/CUDA programming
+- Reinforcement learning and game theory.
+- Formal languages, compilers, and automata theory.
+- Logic and formal proofs (Coq, Metamath).
+- Low-level programming in C/CUDA.
 
-I like minimalism and efficiency. Can do low level code optimization. Linux user for 20 years. I love math and philosophy.
+I value **minimalism** and **efficiency**. My primary programming languages are **Python**, **C**, and **Shell**. I have been a **Linux** user for over 20 years. I am passionate about **mathematics** and **philosophy**.
