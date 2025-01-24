@@ -2,16 +2,15 @@
 title: "c0stya's notes"
 ---
 
+## Articles
+
+* [Fano's inequality or why your features have to be informative](articles/fano.qmd)
+* [Game of life or why I do not like object-oriented programming](articles/game_of_life.qmd)
 
 ## Projects
 
 * Brzozowski derivatives (python): <https://github.com/c0stya/brzozowski>
-* Transducer library (c99):
-
-
-## Articles
-
-* Why your features should be informative. Mathematical justification.
+* Finite state Transducer library (c99): <https://github.com/c0stya/fslib>
 
 
 ```{=typst}

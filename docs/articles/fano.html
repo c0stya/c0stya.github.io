@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>c0stya’s notes – Costya's notes</title>
+<title>fano – Costya's notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c75bcb89907db7808f0349b764a1a524.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c75bcb89907db7808f0349b764a1a524.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,8 +67,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -78,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Costya’s notes</span>
     </a>
   </div>
@@ -89,11 +118,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -112,48 +141,83 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#articles" id="toc-articles" class="nav-link active" data-scroll-target="#articles">Articles</a></li>
-  <li><a href="#projects" id="toc-projects" class="nav-link" data-scroll-target="#projects">Projects</a></li>
+  <li><a href="#fanos-inequality-or-why-your-features-have-to-be-informative" id="toc-fanos-inequality-or-why-your-features-have-to-be-informative" class="nav-link active" data-scroll-target="#fanos-inequality-or-why-your-features-have-to-be-informative">Fano’s inequality or why your features have to be informative</a>
+  <ul class="collapse">
+  <li><a href="#mnist-example" id="toc-mnist-example" class="nav-link" data-scroll-target="#mnist-example">MNIST Example</a></li>
+  <li><a href="#why-mutual-information-is-not-enough" id="toc-why-mutual-information-is-not-enough" class="nav-link" data-scroll-target="#why-mutual-information-is-not-enough">Why mutual information is not enough</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">c0stya’s notes</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="articles" class="level2">
-<h2 class="anchored" data-anchor-id="articles">Articles</h2>
-<ul>
-<li><a href="./articles/fano.html">Fano’s inequality or why your features have to be informative</a></li>
-<li><a href="./articles/game_of_life.html">Game of life or why I do not like object-oriented programming</a></li>
-</ul>
+<section id="fanos-inequality-or-why-your-features-have-to-be-informative" class="level1">
+<h1>Fano’s inequality or why your features have to be informative</h1>
+<p>What does it mean to extract a good feature? Part of the answer lies in ensuring the feature is informative. But how much information should it contain? We can formally estimate this using <strong>Fano’s inequality</strong>:</p>
+<p><span class="math display">\[
+H(X|Y) \le H_{b}(\epsilon) + \epsilon \cdot \log(|C|-1) \text{   (*)}
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+H_b(\epsilon) = -\epsilon \cdot \log(\epsilon)-(1-\epsilon) \cdot \log(1-\epsilon)
+\]</span></p>
+<p>is the <strong>binary entropy</strong>, <span class="math inline">\(C\)</span> is a random variable representing the classifier and <span class="math inline">\(|C|\)</span> is a number of classes.</p>
+<p>Let’s break this down. Let <span class="math inline">\(X\)</span> be an <span class="math inline">\(n\)</span>-ary random variable we want to predict. Let <span class="math inline">\(Y\)</span> be a random variable representing the features we feed into our classifier. We build a classifier <span class="math inline">\(C\)</span> to be as close as we can to match the hidden label <span class="math inline">\(X\)</span>. Suppose we aim for a small error rate, not exceeding <span class="math inline">\(\epsilon\)</span>. Formally, <span class="math inline">\(P(X=C)=1-\epsilon\)</span>.</p>
+<p>Let’s rewrite the original inequality (*) to be suitable for our needs. By definition of the conditional entropy:</p>
+<p><span class="math display">\[
+H(X|Y) = H(X) - I(X,Y)
+\]</span></p>
+<p>substituting the above into (*) inequality we have:</p>
+<p><span class="math display">\[
+H(X) - I(X,Y) \le H_b(\epsilon) + \epsilon \cdot \log(|C|-1)
+\]</span> then, <span class="math display">\[
+I(X,Y) \ge H(X) - H_b(\epsilon) - \epsilon \cdot \log(|C|-1)
+\]</span></p>
+<p>In plain English it means that in order to have good classification quality <span class="math inline">\(1-\epsilon\)</span>. we need our features to share at least <span class="math inline">\(H(X) - H(\epsilon) - \epsilon \cdot \log(|C|-1)\)</span> bits with the original data <span class="math inline">\(X\)</span>.</p>
+<section id="mnist-example" class="level2">
+<h2 class="anchored" data-anchor-id="mnist-example">MNIST Example</h2>
+<p>Lets take a concrete example of MNIST dataset. It has <span class="math inline">\(|C|=10\)</span> classes uniformely distributed. That means <span class="math inline">\(H(X) = \log(10)\)</span> of total information. Assume we want to design a classifier with error at least <span class="math inline">\(0.9\)</span>, then</p>
+<p><span class="math display">\[
+\begin{aligned}
+I(X,Y)  &amp; \ge H(X) - H_b(\epsilon) - \epsilon \cdot \log(|C|-1) \\
+    &amp;= H(10) - H_b(0.1) - 0.1 \cdot \log(10-1) \\
+    &amp;= \log(10) - (0.1 \cdot \log(0.1) + 0.9 \cdot \log(0.9)) - 0.1 \cdot \log(9) \\
+    &amp;\approx 2.54 \text{bits}
+\end{aligned}
+\]</span></p>
+<p>Thus, to achieve 90% accuracy, we need at least <span class="math inline">\(2.54\)</span> bits of class information per MNIST image. Compared to the original entropy of <span class="math inline">\(\log(10) \approx 3.32\)</span> bits, this is about 76% of the class information.</p>
+<p>If we require the error to be zero (i.e.&nbsp;<span class="math inline">\(\epsilon=0\)</span>), then inequality simplifies to:</p>
+<p><span class="math display">\[
+\begin{aligned}
+I(X,Y)  &amp;\ge H(X) - H_b(\epsilon) - \epsilon \cdot \log(|C|-1) \\
+    &amp;= H(X)  \\
+    &amp;= log(10) \\
+    &amp;= 3.32 \\
+\end{aligned}
+\]</span></p>
+<p>That means we have to keep all the information in our. It does agree with our intuition. To have the perfect prediction we have to have all the information.</p>
+<p>Opposite, if we don’t care about the error and set it to 0.1 (i.e.&nbsp;ε=0.1, which corresponds accuracy of 0.5 for 10 classes).</p>
+<p><span class="math display">\[
+\begin{aligned}
+I(X,Y)  \ge H(X) - H_b(\epsilon) - \epsilon \cdot \log(|C|-1) \\
+    = 0
+\end{aligned}
+\]</span></p>
+<p>So, again, it aligns with our intuition. To produce random predictions we don’t have to have information at all.</p>
 </section>
-<section id="projects" class="level2">
-<h2 class="anchored" data-anchor-id="projects">Projects</h2>
-<ul>
-<li>Brzozowski derivatives (python): <a href="https://github.com/c0stya/brzozowski" class="uri">https://github.com/c0stya/brzozowski</a></li>
-<li>Finite state Transducer library (c99): <a href="https://github.com/c0stya/fslib" class="uri">https://github.com/c0stya/fslib</a></li>
-</ul>
+<section id="why-mutual-information-is-not-enough" class="level2">
+<h2 class="anchored" data-anchor-id="why-mutual-information-is-not-enough">Why mutual information is not enough</h2>
+<p>We’ve shown that good classifiers require informative features - features that share a significant amount of information with the original data <span class="math inline">\(X\)</span>. However, this is only an <strong>upper bound</strong> on classifier quality. Even with highly informative features, we can still end up with a poor classifier.</p>
+<p>Consider the case where we build a classifier directly from the raw data XX. While we have all the information, constructing a classifier directly from raw pixels or signals is extremely challenging. This is why feature engineering or automatic feature extraction (as in deep learning) is typically necessary.</p>
+<p>Another example is encrypting the original data. While the encrypted data retains all the original information, building a model without the encryption key is nearly impossible.</p>
+<p>This suggests that while informativeness is necessary, it is not the only requirement for good features. Intuitively, features should also be simple. This could mean linear separability, mutual independence, or some form of “disentanglement.” I strongly believe that good features should have low computational complexity (e.g., <a href="https://en.wikipedia.org/wiki/Kolmogorov_complexity">kolmogorov complexity</a> or the <a href="https://en.wikipedia.org/wiki/Minimum_description_length">minimum description length</a>). However, this remains an open question in general.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

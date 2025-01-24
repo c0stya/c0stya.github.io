@@ -4,21 +4,49 @@
     "href": "index.html",
     "title": "c0stya’s notes",
     "section": "",
-    "text": "Brzozowski derivatives (python): https://github.com/c0stya/brzozowski\nTransducer library (c99):"
-  },
-  {
-    "objectID": "index.html#projects",
-    "href": "index.html#projects",
-    "title": "c0stya’s notes",
-    "section": "",
-    "text": "Brzozowski derivatives (python): https://github.com/c0stya/brzozowski\nTransducer library (c99):"
+    "text": "Fano’s inequality or why your features have to be informative\nGame of life or why I do not like object-oriented programming"
   },
   {
     "objectID": "index.html#articles",
     "href": "index.html#articles",
     "title": "c0stya’s notes",
-    "section": "Articles",
-    "text": "Articles\n\nWhy your features should be informative. Mathematical justification."
+    "section": "",
+    "text": "Fano’s inequality or why your features have to be informative\nGame of life or why I do not like object-oriented programming"
+  },
+  {
+    "objectID": "index.html#projects",
+    "href": "index.html#projects",
+    "title": "c0stya’s notes",
+    "section": "Projects",
+    "text": "Projects\n\nBrzozowski derivatives (python): https://github.com/c0stya/brzozowski\nFinite state Transducer library (c99): https://github.com/c0stya/fslib"
+  },
+  {
+    "objectID": "articles/game_of_life.html",
+    "href": "articles/game_of_life.html",
+    "title": "Two ways to implement the Game of life. Or why I do not like object oriented programming.",
+    "section": "",
+    "text": "I started my career writing Smalltalk programs. It is a language with the purest object-oriented style. Everything is an object and objects communitcate by sending messages. I strongly believed it was a proper way to represent the reality. Later I have changed my mind dramatically. Now I think the proper way of writing code is to keep it minimalistic and practical.\nTo demonstrate the idea I have written two versions of the Conway’s Game of Life in Python. The first one follows the object-oriented style."
+  },
+  {
+    "objectID": "articles/game_of_life.html#oop-style-version",
+    "href": "articles/game_of_life.html#oop-style-version",
+    "title": "Two ways to implement the Game of life. Or why I do not like object oriented programming.",
+    "section": "OOP-style version",
+    "text": "OOP-style version\nimport random\n\n\nclass Cell(object):\n    def __init__(self, x, y, val, field):\n        self.x, self.y = x, y\n        self.val = val\n        self.field = field\n\n    def get_new_value(self):\n        neighbors = field.get_neighbors(self.x, self.y)\n\n        neighbors_alive = 0\n        for cell in neighbors:\n            neighbors_alive += cell.val\n\n        if neighbors_alive == 2:\n            val = self.val\n        elif neighbors_alive == 3:\n            val = 1\n        else:\n            val = 0\n\n        return val\n\n\nclass Field(object):\n    def __init__(self, h, w):\n        self.h, self.w = h, w\n        self.cells = [[None] * w for i in range(h)]\n\n        for i in range(h):\n            for j in range(w):\n                val = random.randint(0, 1)\n                self.cells[i][j] = Cell(i, j, val, self)\n\n    def step(self):\n        new_cells = [[None] * self.w for i in range(self.h)]\n\n        for i in range(self.h):\n            for j in range(self.w):\n                val = self.cells[i][j].get_new_value()\n                new_cells[i][j] = Cell(i, j, val, self)\n\n        self.cells = new_cells\n\n    def get_neighbors(self, x, y):\n        neighbors = []\n        for i in range(-1, 2):\n            for j in range(-1, 2):\n                # sentinel\n                if (\n                    x + i &lt; 0\n                    or y + j &lt; 0\n                    or x + i == self.h\n                    or y + j == self.w\n                    or (i == 0 and j == 0)\n                ):\n                    continue\n                neighbors.append(self.cells[x + i][y + j])\n\n        return neighbors\n\n\nfield = Field(100, 100)\n\nfor t in range(1000):\n    field.step()\nThe code above is somewhat pathalogical but nicely illustrates the idea. I aggressively follow the object-oriented paradigm and represent classes of the Field and the Cell. The first problem here is that the Cell class is too simplistic. By introducing it we inject redundant methods and complexity. The second problem is that these classes have to keep references to each other. It complicates the logic. As the result we have 70 lines of messy code.\nLet’s move to the second version."
+  },
+  {
+    "objectID": "articles/game_of_life.html#convolution-based-version",
+    "href": "articles/game_of_life.html#convolution-based-version",
+    "title": "Two ways to implement the Game of life. Or why I do not like object oriented programming.",
+    "section": "Convolution-based version",
+    "text": "Convolution-based version\nimport numpy as np\nfrom scipy.signal import convolve2d\n\nfield = np.random.randint(0, 2, size=(100, 100))\nkernel = np.ones((3, 3))\n\nfor i in range(1000):\n    new_field = convolve2d(field, kernel, mode=\"same\")\n    field = (new_field == 3) + (new_field == 4) * field\nA few things to explain:\n\nconvolve2d with kernel 3x3 of ones is technically a summation within the field 3x3. The result of the summation is placed in the center of the 3x3 field.\nnew_field == 3 indicates that there are 3 cells alive including the central cell. We have two cases:\n\nif the central cell was alive then it had 2 neighbors so keep it alive\nif the central cell was dead then it had 3 neighbors so the central cell would be born the next step\n\nIn either case the central cell should be alive next turn.\nnew_field == 4 indicates there are 4 cells alive including the central cell. We have two cases:\n\nif the central cell was alive, then it had 3 neighbors so keep it alive next turn\nif the central cell was dead, then it had 4 neighbors thus it should be dead next turn\n\nThere is not enough information in the convolved field to distinguish between the two cases above. So we have to look back at the previous state to check if the central cell was alive or not. We do it implicitly by multiplying the convolved field by the previous state of the field.\n\nSo, that’s it. 9 lines of code to do the same job. The key differences to the previous OOP version:\n\nwe don’t really need the cell as a separate class, it is just binary value\nthe field is nicely represented by a binary 2D matrix\nthe whole logic for the local summation can be represented as convolution operator\n\nMoreover, the second version is more efficient. Convolution uses matrix dot product implicitly which is faster then just summation."
+  },
+  {
+    "objectID": "articles/game_of_life.html#efficiency",
+    "href": "articles/game_of_life.html#efficiency",
+    "title": "Two ways to implement the Game of life. Or why I do not like object oriented programming.",
+    "section": "Efficiency",
+    "text": "Efficiency\nOOP version:\n$ time python life_oop.py\n\nreal    0m16.885s\nuser    0m16.872s\nsys 0m0.003s\nConvolution-based version:\n$ time python life_conv.py\n\nreal    0m0.639s\nuser    0m3.758s\nsys 0m0.038s"
   },
   {
     "objectID": "about.html",
@@ -33,5 +61,26 @@
     "title": "About",
     "section": "Interests",
     "text": "Interests\n\nrepresentation learning, embeddings, contrastive learning and information retrieval\nnatural language processing, large language models (aka LLMs)\ngenerative models: autoencoders, flows and diffusion models\nsequential models: RNNs, transformers, mamba, rwkv\n\nOther topics in machine learning and computer science:\n\nreinforcement learning and game theory\nformal languages and compilers, automata theory\nlogic and formal proofs, Coq, Metamath\nlow-level C/CUDA programming\n\nI like minimalism and efficiency. Can do low level code optimization. Linux user for 20 years. I love math and philosophy."
+  },
+  {
+    "objectID": "articles/fano.html",
+    "href": "articles/fano.html",
+    "title": "Fano’s inequality or why your features have to be informative",
+    "section": "",
+    "text": "What does it mean to extract a good feature? Part of the answer lies in ensuring the feature is informative. But how much information should it contain? We can formally estimate this using Fano’s inequality:\n\\[\nH(X|Y) \\le H_{b}(\\epsilon) + \\epsilon \\cdot \\log(|C|-1) \\text{   (*)}\n\\]\nwhere\n\\[\nH_b(\\epsilon) = -\\epsilon \\cdot \\log(\\epsilon)-(1-\\epsilon) \\cdot \\log(1-\\epsilon)\n\\]\nis the binary entropy, \\(C\\) is a random variable representing the classifier and \\(|C|\\) is a number of classes.\nLet’s break this down. Let \\(X\\) be an \\(n\\)-ary random variable we want to predict. Let \\(Y\\) be a random variable representing the features we feed into our classifier. We build a classifier \\(C\\) to be as close as we can to match the hidden label \\(X\\). Suppose we aim for a small error rate, not exceeding \\(\\epsilon\\). Formally, \\(P(X=C)=1-\\epsilon\\).\nLet’s rewrite the original inequality (*) to be suitable for our needs. By definition of the conditional entropy:\n\\[\nH(X|Y) = H(X) - I(X,Y)\n\\]\nsubstituting the above into (*) inequality we have:\n\\[\nH(X) - I(X,Y) \\le H_b(\\epsilon) + \\epsilon \\cdot \\log(|C|-1)\n\\] then, \\[\nI(X,Y) \\ge H(X) - H_b(\\epsilon) - \\epsilon \\cdot \\log(|C|-1)\n\\]\nIn plain English it means that in order to have good classification quality \\(1-\\epsilon\\). we need our features to share at least \\(H(X) - H(\\epsilon) - \\epsilon \\cdot \\log(|C|-1)\\) bits with the original data \\(X\\).\n\n\nLets take a concrete example of MNIST dataset. It has \\(|C|=10\\) classes uniformely distributed. That means \\(H(X) = \\log(10)\\) of total information. Assume we want to design a classifier with error at least \\(0.9\\), then\n\\[\n\\begin{aligned}\nI(X,Y)  & \\ge H(X) - H_b(\\epsilon) - \\epsilon \\cdot \\log(|C|-1) \\\\\n    &= H(10) - H_b(0.1) - 0.1 \\cdot \\log(10-1) \\\\\n    &= \\log(10) - (0.1 \\cdot \\log(0.1) + 0.9 \\cdot \\log(0.9)) - 0.1 \\cdot \\log(9) \\\\\n    &\\approx 2.54 \\text{bits}\n\\end{aligned}\n\\]\nThus, to achieve 90% accuracy, we need at least \\(2.54\\) bits of class information per MNIST image. Compared to the original entropy of \\(\\log(10) \\approx 3.32\\) bits, this is about 76% of the class information.\nIf we require the error to be zero (i.e. \\(\\epsilon=0\\)), then inequality simplifies to:\n\\[\n\\begin{aligned}\nI(X,Y)  &\\ge H(X) - H_b(\\epsilon) - \\epsilon \\cdot \\log(|C|-1) \\\\\n    &= H(X)  \\\\\n    &= log(10) \\\\\n    &= 3.32 \\\\\n\\end{aligned}\n\\]\nThat means we have to keep all the information in our. It does agree with our intuition. To have the perfect prediction we have to have all the information.\nOpposite, if we don’t care about the error and set it to 0.1 (i.e. ε=0.1, which corresponds accuracy of 0.5 for 10 classes).\n\\[\n\\begin{aligned}\nI(X,Y)  \\ge H(X) - H_b(\\epsilon) - \\epsilon \\cdot \\log(|C|-1) \\\\\n    = 0\n\\end{aligned}\n\\]\nSo, again, it aligns with our intuition. To produce random predictions we don’t have to have information at all.\n\n\n\nWe’ve shown that good classifiers require informative features - features that share a significant amount of information with the original data \\(X\\). However, this is only an upper bound on classifier quality. Even with highly informative features, we can still end up with a poor classifier.\nConsider the case where we build a classifier directly from the raw data XX. While we have all the information, constructing a classifier directly from raw pixels or signals is extremely challenging. This is why feature engineering or automatic feature extraction (as in deep learning) is typically necessary.\nAnother example is encrypting the original data. While the encrypted data retains all the original information, building a model without the encryption key is nearly impossible.\nThis suggests that while informativeness is necessary, it is not the only requirement for good features. Intuitively, features should also be simple. This could mean linear separability, mutual independence, or some form of “disentanglement.” I strongly believe that good features should have low computational complexity (e.g., kolmogorov complexity or the minimum description length). However, this remains an open question in general."
+  },
+  {
+    "objectID": "articles/fano.html#mnist-example",
+    "href": "articles/fano.html#mnist-example",
+    "title": "Fano’s inequality or why your features have to be informative",
+    "section": "",
+    "text": "Lets take a concrete example of MNIST dataset. It has \\(|C|=10\\) classes uniformely distributed. That means \\(H(X) = \\log(10)\\) of total information. Assume we want to design a classifier with error at least \\(0.9\\), then\n\\[\n\\begin{aligned}\nI(X,Y)  & \\ge H(X) - H_b(\\epsilon) - \\epsilon \\cdot \\log(|C|-1) \\\\\n    &= H(10) - H_b(0.1) - 0.1 \\cdot \\log(10-1) \\\\\n    &= \\log(10) - (0.1 \\cdot \\log(0.1) + 0.9 \\cdot \\log(0.9)) - 0.1 \\cdot \\log(9) \\\\\n    &\\approx 2.54 \\text{bits}\n\\end{aligned}\n\\]\nThus, to achieve 90% accuracy, we need at least \\(2.54\\) bits of class information per MNIST image. Compared to the original entropy of \\(\\log(10) \\approx 3.32\\) bits, this is about 76% of the class information.\nIf we require the error to be zero (i.e. \\(\\epsilon=0\\)), then inequality simplifies to:\n\\[\n\\begin{aligned}\nI(X,Y)  &\\ge H(X) - H_b(\\epsilon) - \\epsilon \\cdot \\log(|C|-1) \\\\\n    &= H(X)  \\\\\n    &= log(10) \\\\\n    &= 3.32 \\\\\n\\end{aligned}\n\\]\nThat means we have to keep all the information in our. It does agree with our intuition. To have the perfect prediction we have to have all the information.\nOpposite, if we don’t care about the error and set it to 0.1 (i.e. ε=0.1, which corresponds accuracy of 0.5 for 10 classes).\n\\[\n\\begin{aligned}\nI(X,Y)  \\ge H(X) - H_b(\\epsilon) - \\epsilon \\cdot \\log(|C|-1) \\\\\n    = 0\n\\end{aligned}\n\\]\nSo, again, it aligns with our intuition. To produce random predictions we don’t have to have information at all."
+  },
+  {
+    "objectID": "articles/fano.html#why-mutual-information-is-not-enough",
+    "href": "articles/fano.html#why-mutual-information-is-not-enough",
+    "title": "Fano’s inequality or why your features have to be informative",
+    "section": "",
+    "text": "We’ve shown that good classifiers require informative features - features that share a significant amount of information with the original data \\(X\\). However, this is only an upper bound on classifier quality. Even with highly informative features, we can still end up with a poor classifier.\nConsider the case where we build a classifier directly from the raw data XX. While we have all the information, constructing a classifier directly from raw pixels or signals is extremely challenging. This is why feature engineering or automatic feature extraction (as in deep learning) is typically necessary.\nAnother example is encrypting the original data. While the encrypted data retains all the original information, building a model without the encryption key is nearly impossible.\nThis suggests that while informativeness is necessary, it is not the only requirement for good features. Intuitively, features should also be simple. This could mean linear separability, mutual independence, or some form of “disentanglement.” I strongly believe that good features should have low computational complexity (e.g., kolmogorov complexity or the minimum description length). However, this remains an open question in general."
   }
 ]
