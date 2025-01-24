@@ -12,7 +12,7 @@ $$
 H_b(\epsilon) = -\epsilon \cdot \log(\epsilon)-(1-\epsilon) \cdot \log(1-\epsilon)
 $$
 
-is the **binary entropy**, $C$ is a random variable representing the classifier and $|C|$ is a number of classes.
+is the **binary entropy**, $C$ is a random variable representing the *classifier* and $|C|$ is a number of classes.
 
 Let's break this down. Let $X$ be an $n$-ary random variable we want to predict. Let $Y$ be a random variable representing the features we feed into our classifier. We build a classifier $C$ to be as close as we can to match the hidden label $X$. Suppose we aim for a small error rate, not exceeding $\epsilon$. Formally, $P(X=C)=1-\epsilon$.
 
@@ -34,9 +34,9 @@ $$
 
 In plain English it means that in order to have good classification quality $1-\epsilon$. we need our features to share at least $H(X) - H(\epsilon) - \epsilon \cdot \log(|C|-1)$ bits with the original data $X$.
 
-## MNIST Example
+## Example
 
-Lets take a concrete example of MNIST dataset. It has $|C|=10$ classes uniformely distributed. That means $H(X) = \log(10)$ of total information. Assume we want to design a classifier with error at least $0.9$, then
+Lets take an example of a classification problem with 10 classes. It can be a MNIST dataset for example. Assume it has $|C|=10$ classes uniformely distributed. That means $H(X) = \log(10)$ of total information. Assume we want to design a classifier with error at least $0.9$, then
 
 $$
 \begin{aligned}
@@ -55,7 +55,7 @@ $$
 \begin{aligned}
 I(X,Y) 	&\ge H(X) - H_b(\epsilon) - \epsilon \cdot \log(|C|-1) \\
 	&= H(X)  \\
-	&= log(10) \\
+	&= \log(10) \\
 	&= 3.32 \\
 \end{aligned}
 $$
@@ -65,10 +65,7 @@ That means we have to keep all the information in our. It does agree with our in
 Opposite, if we don't care about the error and set it to 0.1 (i.e. ε=0.1, which corresponds accuracy of 0.5 for 10 classes).
 
 $$
-\begin{aligned}
-I(X,Y) 	\ge H(X) - H_b(\epsilon) - \epsilon \cdot \log(|C|-1) \\
-	= 0
-\end{aligned}
+I(X,Y)	\ge H(X) - H_b(\epsilon) - \epsilon \cdot \log(|C|-1) = 0
 $$
 
 So, again, it aligns with our intuition. To produce random predictions we don't have to have information at all.
@@ -81,4 +78,4 @@ Consider the case where we build a classifier directly from the raw data XX. Whi
 
 Another example is encrypting the original data. While the encrypted data retains all the original information, building a model without the encryption key is nearly impossible.
 
-This suggests that while informativeness is necessary, it is not the only requirement for good features. Intuitively, features should also be simple. This could mean linear separability, mutual independence, or some form of "disentanglement." I strongly believe that good features should have low computational complexity (e.g., [kolmogorov complexity](https://en.wikipedia.org/wiki/Kolmogorov_complexity) or the [minimum description length](https://en.wikipedia.org/wiki/Minimum_description_length)). However, this remains an open question in general.
+This suggests that while informativeness is necessary, it is not the only requirement for good features. Intuitively, features should also be *simple*. This could mean linear separability, mutual independence, or some form of "disentanglement." I strongly believe that good features should have low computational complexity (e.g., [kolmogorov complexity](https://en.wikipedia.org/wiki/Kolmogorov_complexity) or the [minimum description length](https://en.wikipedia.org/wiki/Minimum_description_length)). However, this remains an open question in general.
