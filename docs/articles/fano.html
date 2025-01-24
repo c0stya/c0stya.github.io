@@ -143,7 +143,7 @@ window.Quarto = {
   <ul>
   <li><a href="#fanos-inequality-or-why-your-features-have-to-be-informative" id="toc-fanos-inequality-or-why-your-features-have-to-be-informative" class="nav-link active" data-scroll-target="#fanos-inequality-or-why-your-features-have-to-be-informative">Fano’s inequality or why your features have to be informative</a>
   <ul class="collapse">
-  <li><a href="#mnist-example" id="toc-mnist-example" class="nav-link" data-scroll-target="#mnist-example">MNIST Example</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
   <li><a href="#why-mutual-information-is-not-enough" id="toc-why-mutual-information-is-not-enough" class="nav-link" data-scroll-target="#why-mutual-information-is-not-enough">Why mutual information is not enough</a></li>
   </ul></li>
   </ul>
@@ -165,7 +165,7 @@ H(X|Y) \le H_{b}(\epsilon) + \epsilon \cdot \log(|C|-1) \text{   (*)}
 <p><span class="math display">\[
 H_b(\epsilon) = -\epsilon \cdot \log(\epsilon)-(1-\epsilon) \cdot \log(1-\epsilon)
 \]</span></p>
-<p>is the <strong>binary entropy</strong>, <span class="math inline">\(C\)</span> is a random variable representing the classifier and <span class="math inline">\(|C|\)</span> is a number of classes.</p>
+<p>is the <strong>binary entropy</strong>, <span class="math inline">\(C\)</span> is a random variable representing the <em>classifier</em> and <span class="math inline">\(|C|\)</span> is a number of classes.</p>
 <p>Let’s break this down. Let <span class="math inline">\(X\)</span> be an <span class="math inline">\(n\)</span>-ary random variable we want to predict. Let <span class="math inline">\(Y\)</span> be a random variable representing the features we feed into our classifier. We build a classifier <span class="math inline">\(C\)</span> to be as close as we can to match the hidden label <span class="math inline">\(X\)</span>. Suppose we aim for a small error rate, not exceeding <span class="math inline">\(\epsilon\)</span>. Formally, <span class="math inline">\(P(X=C)=1-\epsilon\)</span>.</p>
 <p>Let’s rewrite the original inequality (*) to be suitable for our needs. By definition of the conditional entropy:</p>
 <p><span class="math display">\[
@@ -178,9 +178,9 @@ H(X) - I(X,Y) \le H_b(\epsilon) + \epsilon \cdot \log(|C|-1)
 I(X,Y) \ge H(X) - H_b(\epsilon) - \epsilon \cdot \log(|C|-1)
 \]</span></p>
 <p>In plain English it means that in order to have good classification quality <span class="math inline">\(1-\epsilon\)</span>. we need our features to share at least <span class="math inline">\(H(X) - H(\epsilon) - \epsilon \cdot \log(|C|-1)\)</span> bits with the original data <span class="math inline">\(X\)</span>.</p>
-<section id="mnist-example" class="level2">
-<h2 class="anchored" data-anchor-id="mnist-example">MNIST Example</h2>
-<p>Lets take a concrete example of MNIST dataset. It has <span class="math inline">\(|C|=10\)</span> classes uniformely distributed. That means <span class="math inline">\(H(X) = \log(10)\)</span> of total information. Assume we want to design a classifier with error at least <span class="math inline">\(0.9\)</span>, then</p>
+<section id="example" class="level2">
+<h2 class="anchored" data-anchor-id="example">Example</h2>
+<p>Lets take an example of a classification problem with 10 classes. It can be a MNIST dataset for example. Assume it has <span class="math inline">\(|C|=10\)</span> classes uniformely distributed. That means <span class="math inline">\(H(X) = \log(10)\)</span> of total information. Assume we want to design a classifier with error at least <span class="math inline">\(0.9\)</span>, then</p>
 <p><span class="math display">\[
 \begin{aligned}
 I(X,Y)  &amp; \ge H(X) - H_b(\epsilon) - \epsilon \cdot \log(|C|-1) \\
@@ -195,17 +195,14 @@ I(X,Y)  &amp; \ge H(X) - H_b(\epsilon) - \epsilon \cdot \log(|C|-1) \\
 \begin{aligned}
 I(X,Y)  &amp;\ge H(X) - H_b(\epsilon) - \epsilon \cdot \log(|C|-1) \\
     &amp;= H(X)  \\
-    &amp;= log(10) \\
+    &amp;= \log(10) \\
     &amp;= 3.32 \\
 \end{aligned}
 \]</span></p>
 <p>That means we have to keep all the information in our. It does agree with our intuition. To have the perfect prediction we have to have all the information.</p>
 <p>Opposite, if we don’t care about the error and set it to 0.1 (i.e.&nbsp;ε=0.1, which corresponds accuracy of 0.5 for 10 classes).</p>
 <p><span class="math display">\[
-\begin{aligned}
-I(X,Y)  \ge H(X) - H_b(\epsilon) - \epsilon \cdot \log(|C|-1) \\
-    = 0
-\end{aligned}
+I(X,Y)  \ge H(X) - H_b(\epsilon) - \epsilon \cdot \log(|C|-1) = 0
 \]</span></p>
 <p>So, again, it aligns with our intuition. To produce random predictions we don’t have to have information at all.</p>
 </section>
@@ -214,7 +211,7 @@ I(X,Y)  \ge H(X) - H_b(\epsilon) - \epsilon \cdot \log(|C|-1) \\
 <p>We’ve shown that good classifiers require informative features - features that share a significant amount of information with the original data <span class="math inline">\(X\)</span>. However, this is only an <strong>upper bound</strong> on classifier quality. Even with highly informative features, we can still end up with a poor classifier.</p>
 <p>Consider the case where we build a classifier directly from the raw data XX. While we have all the information, constructing a classifier directly from raw pixels or signals is extremely challenging. This is why feature engineering or automatic feature extraction (as in deep learning) is typically necessary.</p>
 <p>Another example is encrypting the original data. While the encrypted data retains all the original information, building a model without the encryption key is nearly impossible.</p>
-<p>This suggests that while informativeness is necessary, it is not the only requirement for good features. Intuitively, features should also be simple. This could mean linear separability, mutual independence, or some form of “disentanglement.” I strongly believe that good features should have low computational complexity (e.g., <a href="https://en.wikipedia.org/wiki/Kolmogorov_complexity">kolmogorov complexity</a> or the <a href="https://en.wikipedia.org/wiki/Minimum_description_length">minimum description length</a>). However, this remains an open question in general.</p>
+<p>This suggests that while informativeness is necessary, it is not the only requirement for good features. Intuitively, features should also be <em>simple</em>. This could mean linear separability, mutual independence, or some form of “disentanglement.” I strongly believe that good features should have low computational complexity (e.g., <a href="https://en.wikipedia.org/wiki/Kolmogorov_complexity">kolmogorov complexity</a> or the <a href="https://en.wikipedia.org/wiki/Minimum_description_length">minimum description length</a>). However, this remains an open question in general.</p>
 
 
 </section>
