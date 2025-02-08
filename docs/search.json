@@ -4,7 +4,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "My name is Konstantin Selivanov. I am a machine learning engineer and researcher.\nMy lifelong focus has been on representation learning and deep learning. I excel at implementing research papers and optimizing machine learning algorithms. As the first machine learning engineer at several startups, I contributed to their successful exits, with some backed by Google Ventures and Sequoia Capital for over $100 million. I have experience leading machine learning teams and occasionally offer consulting services. Feel free to reach out to me."
+    "text": "My name is Konstantin Selivanov. I am a machine learning engineer and researcher.\nMy lifelong focus has been on representation learning and deep learning. I enjoy at implementing research papers and optimizing machine learning algorithms. As the first machine learning engineer at several startups, I contributed to their successful exits, with some backed by Google Ventures and Sequoia Capital for over $100 million. Feel free to reach out to me."
   },
   {
     "objectID": "about.html#interests",
@@ -81,6 +81,6 @@
     "href": "index.html#projects",
     "title": "c0stya’s notes",
     "section": "Projects",
-    "text": "Projects\n\nBrzozowski derivatives (python): https://github.com/c0stya/brzozowski\nFinite state Transducer library (c99): https://github.com/c0stya/fslib"
+    "text": "Projects\n\nTransductive regular expressions (c99): https://github.com/c0stya/trre\nBrzozowski derivatives (python): https://github.com/c0stya/brzozowski\nFinite state Transducer library (c99): https://github.com/c0stya/fslib"
   }
 ]
