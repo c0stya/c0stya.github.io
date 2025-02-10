@@ -1,7 +1,3 @@
----
-title: "c0stya's notes"
----
-
 ## Articles
 
 * [Fano's inequality or why your features have to be informative](articles/fano.qmd)
@@ -13,10 +9,3 @@ title: "c0stya's notes"
 * Brzozowski derivatives (python): <https://github.com/c0stya/brzozowski>
 * Finite state Transducer library (c99): <https://github.com/c0stya/fslib>
 
-
-```{=typst}
-#set par(justify: true)
-
-== Background
-In the case of glaciers, fluid dynamics principles can be used to understand how the movement and behavior of the ice is influenced by factors such as temperature, pressure, and the presence of other fluids (such as water).
-```
