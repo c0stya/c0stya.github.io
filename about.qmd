@@ -13,16 +13,9 @@ My lifelong focus has been on **representation learning** and **deep learning**.
 
 ## Interests
 
-- **Representation Learning**: Embeddings, contrastive learning, and information retrieval.
-- **Natural Language Processing**: Large language models (LLMs).
-- **Generative Models**: Autoencoders, normalizing flows, and diffusion models.
-- **Sequential Models**: RNNs, transformers, Mamba, and RWKV.
-
-### Other Topics in Machine Learning and Computer Science
-
-- Reinforcement learning and game theory.
-- Formal languages, compilers, and automata theory.
-- Logic and formal proofs (Coq, Metamath).
-- Low-level programming in C/CUDA.
+- **Representation Learning**: embeddings, contrastive learning, and information retrieval.
+- **Natural Language Processing**: large language models (LLMs).
+- **Generative Models**: autoencoders, normalizing flows, and diffusion models.
+- **Sequential Models**: rnns, transformers, state-space models.
 
 I value **minimalism** and **efficiency**. My primary programming languages are **Python**, **C**, and **Shell**. I have been a **Linux** user for over 20 years. I am passionate about **mathematics** and **philosophy**.
