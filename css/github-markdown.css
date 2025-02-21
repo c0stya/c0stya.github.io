@@ -1,9 +1,9 @@
 .markdown-body {
-  --base-size-4: 0.25rem;
-  --base-size-8: 0.5rem;
-  --base-size-16: 1rem;
-  --base-size-24: 1.5rem;
-  --base-size-40: 2.5rem;
+  --base-size-4: 0.3; /* 0.25rem; */
+  --base-size-8: 0.7; /* 0.5rem; */
+  --base-size-16: 1.2; /* 1rem; */
+  --base-size-24: 1.7; /* 1.5rem; */
+  --base-size-40: 2.9; /* 2.5rem; */
   --base-text-weight-normal: 400;
   --base-text-weight-medium: 500;
   --base-text-weight-semibold: 600;

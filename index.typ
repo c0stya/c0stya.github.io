@@ -3,7 +3,7 @@
 == Articles
 
 - #link("./autoencoders.html")[
-    Autoencoders Zoo
+    Autoencoders: information theoretic view (draft)
     ]
 - #link("./fano.html")[
     Fano's inequality or why your features have to be informative

@@ -1,6 +1,16 @@
 #link("./index.html")[Home] | #link("./about.html")[About]
 
-== Plain autoencoder
+== Intro
+
+Autoencoder is a method for _non-linear_ dimentionality reduction. We need it when we want to extract informative features or reduce noise. We do it by artificially reducing the dimentinality of data or add some sort of regularization. Depending on this we can distinguish these types of models:
+
+- plain (undercomplete) autoencoder
+- denoising autoencoder
+- variational autoencoder
+- contractive autoencoder
+
+
+== Plain (undercomplete) autoencoder
 
 There is a function from space $X$ to space $Z$.
 Objective: maximize mutual information $I(X, Z)$. So,

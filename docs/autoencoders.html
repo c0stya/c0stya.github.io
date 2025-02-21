@@ -254,7 +254,19 @@ max-width: 50em; color:black;}*:not('#mkdbuttons'){margin:0;padding:0}body{font:
 </head>
 <body>
 <p><a href="./index.html">Home</a> | <a href="./about.html">About</a></p>
-<h2>Plain autoencoder</h2>
+<h2>Intro</h2>
+<p>Autoencoder is a method for <em>non-linear</em> dimentionality
+reduction. We need it when we want to extract informative features or
+reduce noise. We do it by artificially reducing the dimentinality of
+data or add some sort of regularization. Depending on this we can
+distinguish these types of models:</p>
+<ul>
+<li><p>plain (undercomplete) autoencoder</p></li>
+<li><p>denoising autoencoder</p></li>
+<li><p>variational autoencoder</p></li>
+<li><p>contractive autoencoder</p></li>
+</ul>
+<h2>Plain (undercomplete) autoencoder</h2>
 <p>There is a function from space
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>X</mi><annotation encoding="application/x-tex">X</annotation></semantics></math>
 to space
@@ -286,8 +298,6 @@ term. By doing so we shift the distribution
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math>
 to be close to
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>.</p>
-<p>Assume:
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="prefix">|</mo><mi>z</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>N</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>;</mo><mi>g</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>z</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mi>c</mi><mi>I</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mi>π</mi><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mi>−</mi><mfrac><mi>k</mi><mn>2</mn></mfrac></mrow></msup><mspace width="0.222em"></mspace><mrow><mo stretchy="true" form="prefix">|</mo><mspace width="0.222em"></mspace><mo stretchy="true" form="postfix">|</mo></mrow><mi>Σ</mi><msup><mo stretchy="false" form="prefix">|</mo><mrow><mi>−</mi><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow></msup><msup><mi>e</mi><mrow><mi>−</mi><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow></msup><msup><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>−</mo><mi>g</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>z</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mi>T</mi></msup><mi>c</mi><msup><mi>I</mi><mrow><mi>−</mi><mn>1</mn></mrow></msup><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>−</mo><mi>g</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>z</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">Q\left( x|z \right) = N\left( x;g(z),cI \right) = (2\pi)^{- \frac{k}{2}}~|~|\Sigma|^{- \frac{1}{2}}e^{- \frac{1}{2}}\left( x - g(z) \right)^{T}cI^{- 1}\left( x - g(z) \right)</annotation></semantics></math></p>
 <h2>Variational Autoencoder</h2>
 <p>The idea is to maximize
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>θ</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">p_{\theta}(x)</annotation></semantics></math>.
